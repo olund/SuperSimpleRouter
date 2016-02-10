@@ -1,0 +1,32 @@
+{
+  "name": "super-simple-router",
+  "version": "1.0.0",
+  "description": "A super simple router",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "usage": "babel-node src/usage.js",
+    "test": "mocha --compilers js:mocha-traceur $(find . -not -path './node_modules/*' | grep '.test.js')",
+    "build": "babel src -d out",
+    "babel-node": "babel-node --stage 0 --ignore='foo|bar|baz'"
+  },
+  "keywords": [
+    "router",
+    "http-router"
+  ],
+  "author": "Henrik Ölund",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.4.5",
+    "mocha-traceur": "^2.1.0",
+    "supertest": "^1.1.0",
+    "traceur": "0.0.102"
+  }
+}
