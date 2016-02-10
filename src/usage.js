@@ -105,5 +105,7 @@ router.post('/test', (req, res) => {
 http.createServer((req, res) => {
     router.route(req, res);
 }).listen(1337);
+
+//http.createServer((req, res) => router.route(req, res)).listen(1337);
+
 //http.createServer(router.route.bind(router)).listen(1337);
-//http.createServer(router.route).listen(1337);
