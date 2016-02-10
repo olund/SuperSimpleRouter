@@ -1,7 +1,9 @@
 
 # Router module
+A simple HTTP router for nodejs
 
-Below you find examples on how to use the route module.
+
+#Examples usage
 
 ```js
 import Router from '../router/router';
