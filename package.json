@@ -1,6 +1,6 @@
 {
   "name": "super-simple-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A super simple router",
   "main": "index.js",
   "directories": {
