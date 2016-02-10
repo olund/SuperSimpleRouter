@@ -48,4 +48,4 @@ http.createServer((req, res) => {
 }).listen(1337);
 ```
 
-Checkout [usage.js](https://github.com/mosbth/linux/blob/master/example/nodejs/router/usage.js) to view more examples on how to use the Router.
+Checkout [usage.js](https://github.com/olund/SuperSimpleRouter/blob/master/src/usage.js) to view more examples on how to use the Router.
