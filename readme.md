@@ -51,3 +51,6 @@ http.createServer((req, res) => {
 ```
 
 Checkout [usage.js](https://github.com/olund/SuperSimpleRouter/blob/master/src/usage.js) to view more examples on how to use the Router.
+
+## Contributors
+[Jonatan Karlsson](https://github.com/foikila)  
