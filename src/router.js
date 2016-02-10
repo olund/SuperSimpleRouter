@@ -1,40 +1,17 @@
 /**
  * Router
- *
- * Example usage..
- *
- * var http = require('http');
- * var router = new Router();
- *
- * // Write a simple route..
- * router.get('/', function(req, res) {
- *  res.end('hello');
- * });
- *
- * http.createServer(function (req, res) {
- *    router.route(req, res);
- * }).listen(1337);
- *
+ * Henrik Ölund 
  */
 
-var url = require('url');
+let url = require('url');
 
 import { buildResponse } from './response';
 import { buildRequest } from './request';
 
-/**
- * @version 1.0
- */
 class Router {
 
     constructor() {
         this.routes = [];
-        this.methods = {
-            'GET': 'get',
-            'POST': 'post',
-            'PUT': 'put',
-            'DELETE': 'delete'
-        };
     }
 
     /**
@@ -87,20 +64,20 @@ class Router {
         res = buildResponse(req, res);
 
         // Get the path and the method.
-        var path = trimSlashes(url.parse(req.url).pathname);
-        var method = req.method;
+        let path = trimSlashes(url.parse(req.url).pathname);
+        let method = req.method;
 
         // Split the path to get the parameters.
-        var urlParams = path.split('/');
+        let urlParams = path.split('/');
 
         // Filter out the routes to process..
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-        var routesToProcess = this.routes.filter(function (r) {
+        let routesToProcess = this.routes.filter(function (r) {
             // remove trailing slash from the current path, if they exist.
             r.path = trimSlashes(r.path);
 
             // Split the current params.
-            var params = r.path.split('/');
+            let params = r.path.split('/');
 
             // If the parameters lenght is not the same, it's not the route we are looking for.
             if (params.length !== urlParams.length) {
@@ -108,11 +85,11 @@ class Router {
             }
 
             // Get params.
-            var currentParams = params.filter(function (p) {
+            let currentParams = params.filter(function (p) {
                 return p.includes(':');
             });
 
-            var found = [];
+            let found = [];
 
             // Get all "special" params. :
             for (var i = 0; i < params.length; i += 1) {
@@ -129,7 +106,7 @@ class Router {
                 });
             }
 
-            var counter = 0;
+            let counter = 0;
             for (var x = 0; x < urlParams.length; x += 1)  {
                 // Do the actual check if the route matches.
                 if (urlParams[x] === params[x] || params[x].includes(':')) {
@@ -148,13 +125,13 @@ class Router {
         }
 
         // Handle the request.
-        routesToProcess.forEach(function (route) {
+        routesToProcess.forEach((route) => {
 
             req.on('end', () => {
                 // Does the raw body have any data?
                 if (req.rawBody !== '') {
                     console.log(req.headers['content-type']);
-                    var body;
+                    let body;
                     // What type of data is? Which method of parsing
                     // the data does I need?
                     switch (req.headers['content-type']) {
@@ -197,9 +174,9 @@ class Router {
             throw new Error('No handler function was passed');
         }
 
-        var oldLen = this.routes.length;
+        let oldLen = this.routes.length;
         callback();
-        var length = this.routes.length - oldLen;
+        let length = this.routes.length - oldLen;
 
         for (var i = this.routes.length; i > this.routes.length - length; i = i - 1) {
             this.routes[i - 1].path = path + this.routes[i - 1].path;
